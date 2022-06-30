@@ -10,7 +10,7 @@ import handleValidationErrors from "./utils/handleValidationErrors.js";
 
 
 mongoose
-  .connect('mongodb+srv://admin:wwwwwwww@cluster0.iuvrovt.mongodb.net/blog?retryWrites=true&w=majority')
+  .connect(process.env.MONGODB_URI)
   .then(()=>console.log('db works'))
   .catch((err)=>console.log('db error', err))
 
@@ -50,7 +50,7 @@ app.delete('/posts/:id', checkAuth, remove);
 app.patch('/posts/:ud',checkAuth,postCreateValidation,handleValidationErrors, update);
 
 
-app.listen(4444,(err)=>{
+app.listen(process.env.PORT || 4444,(err)=>{
   if (err) {
     return console.log(err);
   } else {
