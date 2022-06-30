@@ -7,10 +7,13 @@ import {create, getAll, getLastTags, getOne, remove, update} from "./controllers
 import multer from 'multer'
 import cors from 'cors'
 import handleValidationErrors from "./utils/handleValidationErrors.js";
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(process.env.MONGODB_URI,{ useNewUrlParser: true, useUnifiedTopology: true })
   .then(()=>console.log('db works'))
   .catch((err)=>console.log('db error', err))
 
